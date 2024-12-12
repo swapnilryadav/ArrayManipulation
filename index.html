@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo application</title>
+    <style>
+        /* * {
+            font-size: 50px;
+            font-family: Arial, sans-serif;
+            background-color: rgb(150, 150, 179);
+        }
+       .btn{
+        width: 25%;
+        background-color: aqua;
+       }
+       .btn:hover{
+            background-color: rgb(213, 225, 230);
+       } */
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        #msg {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #555555;
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Array Manipulation</h1>
+        <form onsubmit ="compute()">
+            <input type="submit" value="Add" class="btn">
+            <input type="submit" value="Remove" class="btn">
+            <input type="submit" value="Show" class="btn">
+        </form>
+        <h2 id="msg"></h2>
+        <script>
+           
+                let names=["john","jane"];
+                function compute(){
+                    event.preventDefault();
+                    let action=document.activeElement.value;
+                    let msg=document.getElementById("msg");
+                    if(action==="Add"){
+                        let n=prompt("Enter a name");
+                        if (n === null) {
+                        msg.innerHTML = "";
+                        return;
+                    }
+                    if(n.trim()===""){
+                        alert("Please enter a non-empty string");
+                        msg.innerHTML = "";
+                        return;
+                    }
+                    if(!n.match(/^[a-zA-Z ]+$/)){
+                        alert("Please enter a valid name");
+                        msg.innerHTML = "";
+                        return;
+                    }
+                            names.push(n);
+                            msg.innerHTML="Name added successfully";
+                    }
+                    else if(action==="Remove"){
+                       
+                        let n=prompt("Enter a name to be removed");
+                        
+                        if(!n.match(/^[a-zA-Z ]+$/)){
+                            alert("Please enter a valid name to be removed");
+                            msg.innerHTML = "";
+                            return;
+                    }
+                        if(n!==""){
+                            let pos=names.indexOf(n);
+                            if(pos===-1){
+                                alert(n+ " not found ")
+                               
+                            }else{
+                                names.splice(pos,1);
+                                msg.innerHTML="Name removed successfully";
+                            }
+                        }
+                    }else if(action==="Show"){
+                        msg.innerHTML="Names: "+names.join(", ");
+                    }
+                }
+        </script>
+    </center>
+</body>
+</html>
